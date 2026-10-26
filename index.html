@@ -140,7 +140,11 @@ footer a { color: var(--ink-2); text-decoration: none; }
 footer a:hover { color: var(--ink); text-decoration: underline; }
 footer .fine { flex-basis: 100%; font-size: 12.5px; line-height: 1.6; max-width: 60em; }
 
+.split.rev > :first-child { order: 2; }
+.room-pic[data-room] { display: none; }
+body[data-room="cyber"] .room-pic[data-room="cyber"], body[data-room="lofi"] .room-pic[data-room="lofi"] { display: block; }
 @media (max-width: 860px) {
+  .split.rev > :first-child { order: 0; }
   .split { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
 }
@@ -224,6 +228,20 @@ footer .fine { flex-basis: 100%; font-size: 12.5px; line-height: 1.6; max-width:
         </div>
       </div>
       <img src="img/hover.webp" alt="Hovering a game case on the shelf shows a large preview with its playtime and when it was last played." width="1680" height="1120" loading="lazy">
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap split rev">
+      <div>
+        <p class="k">Pick one</p>
+        <h2>Pull it off the shelf.</h2>
+        <p class="sub" style="margin-bottom:0">Click any case and it slides out as a full boxed copy, with your playtime, when you last played, and a big Play button. Not installed? Install it or open its store page from the same spot, then put it back on the shelf.</p>
+      </div>
+      <div>
+        <img class="room-pic" data-room="cyber" src="img/selected-cyber.webp" alt="A selected game, Sunset Courier, pulled off the shelf as a 3D box next to a panel with its genre, playtime, last played date and a Play button." width="1920" height="1280" loading="lazy">
+        <img class="room-pic" data-room="lofi" src="img/selected-lofi.webp" alt="The same selected game shown in the Lofi Apartment's pink colours." width="1920" height="1280" loading="lazy">
+      </div>
     </div>
   </section>
 
