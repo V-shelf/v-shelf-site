@@ -106,7 +106,7 @@ h2 { font: 700 clamp(30px, 4.4vw, 46px)/1.1 var(--sans); letter-spacing: -.015em
 .k { font: 13px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; transition: color .4s; }
 
 .split { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
-.split img { border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 24px 60px -24px rgba(0,0,0,.9); }
+.split img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 24px 60px -24px rgba(0,0,0,.9); }
 
 .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .feature { padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)); }
@@ -223,7 +223,7 @@ footer .fine { flex-basis: 100%; font-size: 12.5px; line-height: 1.6; max-width:
           </div>
         </div>
       </div>
-      <img src="img/hover.webp" alt="Hovering a game case on the shelf shows a large preview with its playtime and when it was last played." width="840" height="560" loading="lazy">
+      <img src="img/hover.webp" alt="Hovering a game case on the shelf shows a large preview with its playtime and when it was last played." width="1680" height="1120" loading="lazy">
     </div>
   </section>
 
