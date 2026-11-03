@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>V-Shelf · Your Steam library, on a shelf</title>
-<meta name="description" content="V-Shelf turns your desktop into a room where every game you own sits on the shelf as a boxed copy. Click a case to play. Coming soon for Windows.">
+<meta name="description" content="V-Shelf turns your desktop into a room where every game you own sits on the shelf as a boxed copy. Click a case to play. Out now for Windows.">
 <meta property="og:title" content="V-Shelf · Your Steam library, on a shelf">
-<meta property="og:description" content="A live desktop wallpaper that puts every game you own on a shelf. Click a case to play. Coming soon for Windows.">
+<meta property="og:description" content="A live desktop wallpaper that puts every game you own on a shelf. Click a case to play. Out now for Windows.">
 <meta property="og:image" content="https://v-shelf.com/img/og.jpg">
 <meta property="og:url" content="https://v-shelf.com/">
 <meta name="twitter:card" content="summary_large_image">
@@ -84,6 +84,14 @@ h1 em { font-style: normal; font-family: var(--neon); font-weight: 400; color: #
 .signup button:hover { transform: translateY(-1px); box-shadow: 0 0 34px var(--accent-glow); }
 .signup button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .signup button[disabled] { opacity: .7; cursor: default; transform: none; }
+/* ---------- buy buttons ---------- */
+.buy { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.buy a { display: inline-flex; align-items: center; height: 52px; padding: 0 24px; border-radius: 10px; font: 700 16px var(--sans); letter-spacing: .02em; text-decoration: none; transition: background .4s, box-shadow .4s, transform .15s; white-space: nowrap; }
+.buy a.main { color: #08060d; background: var(--accent); box-shadow: 0 0 24px var(--accent-glow); }
+.buy a.alt { color: var(--ink); border: 1px solid rgba(255,255,255,.25); }
+.buy a:hover { transform: translateY(-1px); }
+.buy a.main:hover { box-shadow: 0 0 34px var(--accent-glow); }
+.buy a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-note { font: 13px/1.5 var(--mono); color: var(--ink-3); letter-spacing: .04em; margin: 12px 0 0; min-height: 1.5em; }
 .form-note.ok { color: var(--accent); }
@@ -175,7 +183,7 @@ body:not([data-room="lofi"]) .room-pic[data-room="cyber"], body[data-room="lofi"
 <header>
   <div class="wrap">
     <a class="logo" href="#top" aria-label="V-Shelf home">V-<span>Shelf</span></a>
-    <span class="pill">Coming soon · Windows</span>
+    <span class="pill">Out now · Windows</span>
   </div>
 </header>
 
@@ -184,12 +192,11 @@ body:not([data-room="lofi"]) .room-pic[data-room="cyber"], body[data-room="lofi"
     <p class="eyebrow">A live wallpaper for your game library</p>
     <h1>Your Steam library, <em>on a shelf.</em></h1>
     <p class="lede">V-Shelf turns your desktop into a room where every game you own sits on the shelf as a boxed copy. Hover to look closer, click to play.</p>
-    <form class="signup" data-signup action="https://app.kit.com/forms/10096905/subscriptions" method="post" target="_blank" novalidate>
-      <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="url_hp" tabindex="-1" autocomplete="off"></label>
-      <input type="email" name="email_address" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
-      <button type="submit">Notify me</button>
-    </form>
-    <p class="form-note" role="status" aria-live="polite">One email when it launches. No spam.</p>
+    <div class="buy">
+      <a class="main" href="https://knottheeditor.itch.io/v-shelf">Buy on itch.io · $5 CAD</a>
+      <a class="alt" href="https://knottheeditor.itch.io/v-shelf">Try the free demo</a>
+    </div>
+    <p class="form-note">Windows 10 or 11 · Steam · Wallpaper Engine or Lively</p>
   </div>
 
   <div class="stage-wrap wrap">
@@ -297,7 +304,7 @@ body:not([data-room="lofi"]) .room-pic[data-room="cyber"], body[data-room="lofi"
         </details>
         <details>
           <summary>Can I try it before I buy?</summary>
-          <p>Yes. The free demo puts six of your games on a small shelf in the Dorm Room, so you can see your own library on your desktop first.</p>
+          <p>Yes. The free demo on the <a href="https://knottheeditor.itch.io/v-shelf">itch.io page</a> puts six of your games on a small shelf in the Dorm Room, so you can see your own library on your desktop first.</p>
         </details>
         <details>
           <summary>What do I need to run it?</summary>
@@ -333,14 +340,12 @@ body:not([data-room="lofi"]) .room-pic[data-room="cyber"], body[data-room="lofi"
 
   <section class="cta">
     <div class="wrap">
-      <h2>Get it the day it launches.</h2>
-      <p class="sub">One email. That's it.</p>
-      <form class="signup" data-signup action="https://app.kit.com/forms/10096905/subscriptions" method="post" target="_blank" novalidate>
-        <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="url_hp" tabindex="-1" autocomplete="off"></label>
-        <input type="email" name="email_address" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
-        <button type="submit">Notify me</button>
-      </form>
-      <p class="form-note" role="status" aria-live="polite"></p>
+      <h2>Put your library on a shelf.</h2>
+      <p class="sub">One-time price. All 1.x updates free.</p>
+      <div class="buy">
+        <a class="main" href="https://knottheeditor.itch.io/v-shelf">Buy on itch.io · $5 CAD</a>
+        <a class="alt" href="https://knottheeditor.itch.io/v-shelf">Try the free demo</a>
+      </div>
     </div>
   </section>
 </main>
