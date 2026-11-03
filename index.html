@@ -40,6 +40,10 @@
   --wrap: min(1160px, 100% - 32px);
 }
 body[data-room="lofi"] { --accent: var(--pink); --accent-glow: rgba(255,113,206,.5); }
+body[data-room="arcade"] { --accent: #ff4fc8; --accent-glow: rgba(255,79,200,.5); }
+body[data-room="videostore"] { --accent: #ffd23f; --accent-glow: rgba(255,210,63,.45); }
+body[data-room="cabin"] { --accent: #ffae4a; --accent-glow: rgba(255,174,74,.45); }
+body[data-room="dorm"] { --accent: #b56dff; --accent-glow: rgba(181,109,255,.5); }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -94,9 +98,10 @@ h1 em { font-style: normal; font-family: var(--neon); font-weight: 400; color: #
 .rooms button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .stage { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #000; border: 1px solid var(--line);
   box-shadow: 0 30px 80px -20px rgba(0,0,0,.8), 0 0 90px -30px var(--accent); transition: box-shadow .5s; }
-.stage video { position: absolute; object-fit: cover; transition: left .5s, top .5s, width .5s, height .5s; }
-.stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .5s; }
-.stage img[data-off] { opacity: 0; }
+.stage .frame { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; transform: scale(var(--k, .5)); transition: opacity .5s; }
+.stage .frame[data-off] { opacity: 0; pointer-events: none; }
+.stage .frame video { position: absolute; left: 0; top: 0; transform-origin: 0 0; object-fit: cover; max-width: none; }
+.stage .frame img { position: absolute; inset: 0; width: 1920px; height: 1080px; max-width: none; }
 .stage figcaption { position: absolute; left: 12px; bottom: 12px; font: 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); background: rgba(0,0,0,.55); padding: 7px 9px; border-radius: 6px; }
 
 /* ---------- sections ---------- */
@@ -142,7 +147,7 @@ footer .fine { flex-basis: 100%; font-size: 12.5px; line-height: 1.6; max-width:
 
 .split.rev > :first-child { order: 2; }
 .room-pic[data-room] { display: none; }
-body[data-room="cyber"] .room-pic[data-room="cyber"], body[data-room="lofi"] .room-pic[data-room="lofi"] { display: block; }
+body:not([data-room="lofi"]) .room-pic[data-room="cyber"], body[data-room="lofi"] .room-pic[data-room="lofi"] { display: block; }
 @media (max-width: 860px) {
   .split.rev > :first-child { order: 0; }
   .split { grid-template-columns: 1fr; }
@@ -164,7 +169,7 @@ body[data-room="cyber"] .room-pic[data-room="cyber"], body[data-room="lofi"] .ro
 }
 </style>
 </head>
-<body data-room="cyber">
+<body data-room="cyberpunk">
 <div class="aura" aria-hidden="true"></div>
 
 <header>
@@ -189,16 +194,39 @@ body[data-room="cyber"] .room-pic[data-room="cyber"], body[data-room="lofi"] .ro
 
   <div class="stage-wrap wrap">
     <div class="rooms" role="group" aria-label="Choose a room">
-      <button type="button" data-room="cyber" aria-pressed="true">Cyberpunk Bedroom</button>
+      <button type="button" data-room="cyberpunk" aria-pressed="true">Cyberpunk Bedroom</button>
       <button type="button" data-room="lofi" aria-pressed="false">Lofi Apartment</button>
+      <button type="button" data-room="arcade" aria-pressed="false">Arcade</button>
+      <button type="button" data-room="videostore" aria-pressed="false">Video Store</button>
+      <button type="button" data-room="cabin" aria-pressed="false">Snowy Cabin</button>
+      <button type="button" data-room="dorm" aria-pressed="false">Dorm Room · free demo</button>
     </div>
     <figure class="stage" style="margin:0">
-      <video id="city" muted loop playsinline autoplay preload="auto" poster="img/city.jpg" aria-hidden="true">
-        <source src="img/city.webm" type="video/webm">
-      </video>
-      <img src="img/cyber.webp" data-room="cyber" alt="V-Shelf in the Cyberpunk Bedroom: a neon city through a big window and a metal shelf of game cases lit in green." width="1920" height="1080">
-      <img src="img/lofi.webp" data-room="lofi" data-off alt="V-Shelf in the Lofi Apartment: the same neon city through a window above a cozy desk, and a pink-lit wooden bookshelf full of game cases." width="1920" height="1080" loading="lazy">
-      <figcaption>Live wallpaper · city loop plays in the window</figcaption>
+      <div class="frame" data-room="cyberpunk">
+        <video muted loop playsinline preload="auto" poster="img/rooms/cyberpunk-window.jpg" aria-hidden="true" style="width:1300px;height:1065px;transform:matrix(0.751043, 0, 0, 0.751043, 0, 0) translate(0px, 0px)"><source src="img/rooms/cyberpunk-window.webm" type="video/webm"></video>
+        <img src="img/rooms/cyberpunk.webp" alt="V-Shelf in the Cyberpunk Bedroom: a neon city through a big slanted window and a metal shelf of game cases lit in green." width="1920" height="1080">
+      </div>
+      <div class="frame" data-room="lofi" data-off>
+        <video muted loop playsinline preload="none" poster="img/rooms/lofi-window.jpg" aria-hidden="true" style="width:1000px;height:1015px;transform:matrix(0.751043, 0, 0, 0.751043, -7.34353, 0) translate(150px, 90px)"><source src="img/rooms/lofi-window.webm" type="video/webm"></video>
+        <img src="img/rooms/lofi.webp" alt="V-Shelf in the Lofi Apartment: a dusk city through a window above a cozy desk, and a pink-lit bookshelf full of game cases." width="1920" height="1080" loading="lazy">
+      </div>
+      <div class="frame" data-room="arcade" data-off>
+        <video muted loop playsinline preload="none" poster="img/rooms/arcade-window.jpg" aria-hidden="true" style="width:1620px;height:1080px;transform:matrix(0.75, 0, 0, 0.75, 0, 0.75) translate(0px, 0px) matrix3d(0.954032, 0.263189, 0, 0.0003976, 0, 0.902778, 0, 0, 0, 0, 1, 0, 0, 205, 0, 1)"><source src="img/rooms/arcade-window.webm" type="video/webm"></video>
+        <img src="img/rooms/arcade.webp" alt="V-Shelf in the Arcade: neon ceiling tubes, arcade cabinets, a claw machine and a tall black shelf of game cases, with a neon street outside." width="1920" height="1080" loading="lazy">
+      </div>
+      <div class="frame" data-room="videostore" data-off>
+        <video muted loop playsinline preload="none" poster="img/rooms/videostore-window.jpg" aria-hidden="true" style="width:1440px;height:1080px;transform:matrix(0.751043, 0, 0, 0.751043, -7.34353, 0) translate(0px, 0px) matrix3d(0.833084, 0.45583, 0, 0.0006746, 0, 0.832407, 0, 0, 0, 0, 1, 0, 70, 77, 0, 1)"><source src="img/rooms/videostore-window.webm" type="video/webm"></video>
+        <img src="img/rooms/videostore.webp" alt="V-Shelf in the 90s Video Store: a wall of glowing CRT TVs, a popcorn machine and a blue-lit rack of game cases, with a parking lot outside." width="1920" height="1080" loading="lazy">
+      </div>
+      <div class="frame" data-room="cabin" data-off>
+        <video muted loop playsinline preload="none" poster="img/rooms/cabin-window.jpg" aria-hidden="true" style="width:632px;height:705px;transform:matrix(0.751043, 0, 0, 0.751043, -7.34353, 0) translate(287px, 160px)"><source src="img/rooms/cabin-window.webm" type="video/webm"></video>
+        <img src="img/rooms/cabin.webp" alt="V-Shelf in the Snowy Cabin: a crackling stone fireplace, a bear rug and a warm wooden shelf of game cases, with snow falling in the pines outside." width="1920" height="1080" loading="lazy">
+      </div>
+      <div class="frame" data-room="dorm" data-off>
+        <video muted loop playsinline preload="none" poster="img/rooms/dorm-window.jpg" aria-hidden="true" style="width:430px;height:650px;transform:matrix(0.751043, 0, 0, 0.751043, -7.34353, 0) translate(241px, 200px)"><source src="img/rooms/dorm-window.webm" type="video/webm"></video>
+        <img src="img/rooms/dorm.webp" alt="The free demo: a dorm room with purple LED strips, fairy lights and a small wall shelf holding six game cases, with a campus quad outside." width="1920" height="1080" loading="lazy">
+      </div>
+      <figcaption>Live wallpaper · the view outside the window really moves</figcaption>
     </figure>
   </div>
 
@@ -223,7 +251,7 @@ body[data-room="cyber"] .room-pic[data-room="cyber"], body[data-room="lofi"] .ro
           </div>
           <div class="feature">
             <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg>Pick your room</h3>
-            <p>Cyberpunk Bedroom and Lofi Apartment at launch, with more rooms to come.</p>
+            <p>Five rooms at launch: Cyberpunk Bedroom, Lofi Apartment, Arcade, Video Store and Snowy Cabin. More on the way.</p>
           </div>
         </div>
       </div>
@@ -266,6 +294,10 @@ body[data-room="cyber"] .room-pic[data-room="cyber"], body[data-room="lofi"] .ro
         <details>
           <summary>When does it launch, and how much will it cost?</summary>
           <p>It's in testing now. It'll be a small one-time price, no subscription. Join the list and you'll get one email the day it's out.</p>
+        </details>
+        <details>
+          <summary>Can I try it before I buy?</summary>
+          <p>Yes. The free demo puts six of your games on a small shelf in the Dorm Room, so you can see your own library on your desktop first.</p>
         </details>
         <details>
           <summary>What do I need to run it?</summary>
@@ -323,28 +355,31 @@ body[data-room="cyber"] .room-pic[data-room="cyber"], body[data-room="lofi"] .ro
 
 <script>
 (() => {
-  // Where the window sits in each room screenshot (percent of the image), so the city video lines up behind it.
-  const WINDOWS = {
-    cyber: { left: -0.383, top: 0, width: 50.852, height: 74.061 },
-    lofi:  { left: 5.485, top: 6.259, width: 39.117, height: 70.584 }
-  };
-  const video = document.getElementById('city');
-  const imgs = document.querySelectorAll('.stage img');
+  // Each room is a 1920x1080 picture with a see-through window and its own looping video behind it, scaled to fit the stage.
+  const stage = document.querySelector('.stage');
+  const frames = [...stage.querySelectorAll('.frame')];
   const btns = document.querySelectorAll('.rooms button');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const fit = () => stage.style.setProperty('--k', stage.clientWidth / 1920);
+  fit(); new ResizeObserver(fit).observe(stage);
+  let active = frames[0].dataset.room;
+  function playActive() {
+    frames.forEach(f => {
+      const v = f.querySelector('video');
+      if (f.dataset.room === active && !still.matches) { v.preload = 'auto'; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      else v.pause();
+    });
+  }
   function setRoom(room) {
+    active = room;
     document.body.dataset.room = room;
-    const w = WINDOWS[room];
-    Object.assign(video.style, { left: w.left + '%', top: w.top + '%', width: w.width + '%', height: w.height + '%' });
-    imgs.forEach(i => { if (i.dataset.room === room) i.removeAttribute('data-off'); else i.setAttribute('data-off', ''); });
+    frames.forEach(f => { if (f.dataset.room === room) f.removeAttribute('data-off'); else f.setAttribute('data-off', ''); });
     btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.room === room)));
+    playActive();
   }
   btns.forEach(b => b.addEventListener('click', () => setRoom(b.dataset.room)));
-  setRoom('cyber');
-
-  // Respect reduced motion: keep the still frame instead of the loop.
-  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const play = () => { if (still.matches) { video.pause(); return; } const p = video.play(); if (p && p.catch) p.catch(() => {}); };
-  play(); still.addEventListener?.('change', play);
+  setRoom(active);
+  still.addEventListener?.('change', playActive);
 
   // Email signup (Kit). Paste your Kit form ID here, the number from your form's embed code.
   const KIT_FORM_ID = '10096905';
